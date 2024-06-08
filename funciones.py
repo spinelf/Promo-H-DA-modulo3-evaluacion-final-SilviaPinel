@@ -8,7 +8,7 @@ import scipy.stats as stats
 from scipy.stats import chi2_contingency, ttest_ind
 
 def cargar_csv(url):
-    inst
+    
     df = pd.read_csv(url)
     
     return df
@@ -85,3 +85,50 @@ def normalidad(dataframe, columna):
         print(f"Para la columna {columna} los datos siguen una distribución normal.")
     else:
         print(f"Para la columna {columna} los datos no siguen una distribución normal.")
+        
+def homogeneidad (columna1, columna2):
+    
+    """
+    Evalúa la homogeneidad de las varianzas entre grupos para una métrica específica en un DataFrame dado.
+
+    Parámetros:
+    - columna1 (str): El nombre de la columna con los datos de un grupo.
+    - columna2 (str): El nombre de la columna con los otros datos.
+
+    Returns:
+    No devuelve nada directamente, pero imprime en la consola si las varianzas son homogéneas o no entre los grupos.
+    Se utiliza la prueba de Levene para evaluar la homogeneidad de las varianzas. Si el valor p resultante es mayor que 0.05,
+    se concluye que las varianzas son homogéneas; de lo contrario, se concluye que las varianzas no son homogéneas.
+    """
+     
+    statistic, p_value = stats.levene(columna1,columna2)
+    if p_value > 0.05:
+        print(f"Las varianzas son homogéneas entre grupos.")
+    else:
+        print(f"Las varianzas no son homogéneas entre grupos.")
+
+
+# vamos a crear una función para calcular este test y ver si hay diferencias entre los grupos de estudio
+
+def test_man_whitney(columna1,columna2):
+
+    """
+    Realiza la prueba de Mann-Whitney U para comparar las medianas de las métricas entre dos grupos en un DataFrame dado.
+ 
+    Parámetros:
+    - columna1 (str): El nombre de la columna con los datos de un grupo.
+    - columna2 (str): El nombre de la columna con los otros datos.
+
+    Returns 
+    No devuelve nada directamente, pero imprime en la consola si las medianas son diferentes o iguales para cada métrica.
+    Se utiliza la prueba de Mann-Whitney U para evaluar si hay diferencias significativas entre los grupos.
+    """
+          
+        # aplicamos el estadístico
+    statistic, p_value = stats.mannwhitneyu(columna1,columna2)
+               
+    if p_value < 0.05:
+        print(f"Hay diferencias significativas entre las medianas de las muestras")
+    else:
+        print(f"No hay evidencia suficiente para concluir que las medianas son diferentes")
+            
