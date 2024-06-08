@@ -16,7 +16,7 @@
 
  ## Fase 2: Visualización
 
- # Usando las herramientas de visualización que has aprendido durante este módulo, contesta a las siguientes gráficas usando la mejor gráfica que consideres:
+ ### Usando las herramientas de visualización que has aprendido durante este módulo, contesta a las siguientes gráficas usando la mejor gráfica que consideres:
  
  3. ¿Cómo se distribuye la cantidad de vuelos reservados por mes durante el año?
  4. ¿Existe una relación entre la distancia de los vuelos y los puntos acumulados por los clientes?
