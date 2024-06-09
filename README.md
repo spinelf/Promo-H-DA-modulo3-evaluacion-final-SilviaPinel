@@ -44,4 +44,21 @@
    * Customer Loyalty History.csv
    * Customer Flight Activity.csv
 
+## Lenguajes, librerias y herramientas utilizadas
+
+    IDE: Visual Studio Code (Jupyter Notebook).
+    Librerias: pandas, numpy, sklearn, matplotlib, seaborn, scipy, warnings.
+    Lenguaje: Python.
+
+## Estructura del proyecto
+
+    - El proyecto se divide en diferentes carpetas y archivos:
+       - Carpeta Imagenes: Se guardan las gráficas elaboradas durante el proyecto para facilitar su uso en un informe.
+       - Carpeta info-.fuente: Guardamos los 3 csvs que nos sirven de fuente de datos para la elaboración del estudio.
+           Customer Loyalty History.csv --> Fichero con los datos de los clientes, procedencia, estado civil, nivel educativo, etc. 
+           Customer Flight Activity.csv --> Fichero con la actividad de los clientes con respecto a los vuelos reservados.
+           Customer_flights_and_loyaltie.csv --> fichero csv con la información unida y limpia de los otros dos ficheros csv, este fichero nos servirá de base para todo el análisis.
+       - En el directorio principal encontramos un pdf con las instrucciones del proyecto, un jupyter Notebook con el desarrollo del proyecto y un fichero python (.py) donde se desglosan las funciones utilizadas en el 
+         Notebook.
+
  
