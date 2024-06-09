@@ -15,28 +15,66 @@ def cargar_csv(url):
 
 def propiedades(df):
     
+    #Vemos las primeras lineas del DataFrame
+    
+    print(f"Las primeras lineas del DataFrame son:") 
+    display(df.head(5))
+    
+    
     #Vemos las cantidad de filas y columnas del DataFrame Vuelos
     print(f"El Dataframe de tiene {df.shape[0]} filas y {df.shape[1]} columnas")
     
-    print("**************************************")
+    print("***************************************************")
     
     #vemos los duplicados que existen en el Dataframe
     
     print(f"Los duplicados que tenemos en el conjunto de datos son: {df.duplicated().sum()}")
     
-    print("**************************************")
+    print("**************************************************************")
     
     print(f"Los valores nulos que tenemos en el conjunto de datos son: {df.isnull().sum()}")
+    
+    print("********************************************************************************")
+    
+    print(f"Si vemos los nulos en forma de porcentaje:")
+    
+    # lo primero que vamos a hacer es calcular el porcentaje de nulos que tenemos para cada columna
+    porc_nulos = (df.isnull().sum() / df.shape[0]) * 100
+    
+    # lo convertimos a DataFrame
+    df_nulos = pd.DataFrame(porc_nulos, columns = ["%_nulos"])
+    
+    #filtramos el DataFrame para quedarnos solo con aquellas columnas que tengan nulos
+    display(df_nulos[df_nulos["%_nulos"] > 0])
+    
+    
+    print("********************************************************************************")
     
     print(f"El Dataframe tiene los siguientes datos:") 
     display(df.info())
     
-    print("**************************************")
+    print("********************************************************************************")
     
     print("Los valores estadisticos son: ")
     display(df.describe().T)
     
-    print("**************************************")
+    print("********************************************************************************")
+    
+    #Analizamos las columnas del Dataframe Vuelos
+    print("El listado de columnas es:")
+    print("")
+    
+    display(df.columns)
+    
+    print("********************************************************************************")
+    
+    for column in df.columns:
+  
+        print(f"Columna: {column}")
+        print(df[column].unique())
+
+    print("\n--------------------\n")
+    
     
 def quitar_duplicados(df):
     
@@ -67,6 +105,10 @@ def conversion_tipos(df,columna,tipo_destino):
         df[columna] = df[columna].astype(tipo_destino)
     
         return df[columna]
+
+def fusionar_dfs(df1,df2,columna,como):
+    
+    return pd.merge(df1, df2, on=columna, how=como)
     
 def normalidad(dataframe, columna):
     """
@@ -93,7 +135,7 @@ def homogeneidad (columna1, columna2):
 
     Parámetros:
     - columna1 (str): El nombre de la columna con los datos de un grupo.
-    - columna2 (str): El nombre de la columna con los otros datos.
+    - columna2 (str): El nombre de la columna con los datos del otro grupo de estudio.
 
     Returns:
     No devuelve nada directamente, pero imprime en la consola si las varianzas son homogéneas o no entre los grupos.
@@ -117,7 +159,7 @@ def test_man_whitney(columna1,columna2):
  
     Parámetros:
     - columna1 (str): El nombre de la columna con los datos de un grupo.
-    - columna2 (str): El nombre de la columna con los otros datos.
+    - columna2 (str): El nombre de la columna con los datos del otro grupo de estudio.
 
     Returns 
     No devuelve nada directamente, pero imprime en la consola si las medianas son diferentes o iguales para cada métrica.
